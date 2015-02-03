@@ -1,6 +1,7 @@
 package me.veryvic.webMagic.ui;
 
 import me.veryvic.webMagic.core.AliJsonSearcher;
+import me.veryvic.webMagic.core.AliPageSearcher;
 import me.veryvic.webMagic.core.AliSpider;
 import me.veryvic.webMagic.core.URLEncoderUtil;
 
@@ -63,8 +64,13 @@ public class MainFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 executor.execute(new AliSpider(new AliJsonSearcher(), getJsonTargetUrl(), 3, "d:/test"));
+                executor.execute(new AliSpider(new AliPageSearcher(), getPageTargetUrl(), 3, "d/test"));
             }
         };
+    }
+
+    private String getPageTargetUrl(){
+        return "http://s.1688.com/selloffer/-" + URLEncoderUtil.getSearchHtml(textField.getText()) +".html";
     }
 
     private String getJsonTargetUrl(){
